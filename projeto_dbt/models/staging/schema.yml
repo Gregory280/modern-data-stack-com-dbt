@@ -2,9 +2,9 @@ version: 1
 
 models:
   
-  # ============================================================
-  # STAGING CLIENTES
-  # ============================================================
+# ============================================================
+# STAGING CLIENTES
+# ============================================================
   - name: stg_clientes
     description: >
       Tabela de clientes cadastrados no sistema com nome e formatos padronizados. 
@@ -51,6 +51,74 @@ models:
       - name: total_gasto
         description: Valor total gasto pelo cliente registrado no sistema.
 
-  # ============================================================
-  # STAGING PEDIDOS
-  # ============================================================
+# ============================================================
+# STAGING PEDIDOS
+# ============================================================
+  - name: stg_pedidos
+    description: >
+      Tabela de pedidos realizados no sistema com informações detalhadas sobre cada pedido.
+      Granularidade: 1 linha = 1 pedido.
+    columns:
+      - name: pedido_id
+        description: Identificador único do pedido.
+        tests:
+          - not_null
+          - unique
+      - name: pedido_numero
+        description: Número comercial do pedido.
+        tests:
+          - not_null
+      - name: loja_id
+        description: Identificador da loja onde o pedido foi realizado.
+        tests:
+          - not_null
+      - name: cliente_id
+        description: Identificador do cliente que realizou o pedido.
+        tests:
+          - not_null
+      - name: criado_em
+        description: Data e hora em que o pedido foi criado no sistema.
+        tests:
+          - not_null
+      - name: atualizado_em
+        description: Data e hora da última atualização do pedido no sistema.
+      - name: status_envio
+        description: Status atual do envio do pedido.
+      - name: pedido_status
+        description: Status atual do pedido no sistema.
+      - name: pagamento_status
+        description: Status atual do pagamento do pedido.
+      - name: pago_em
+        description: Data e hora em que o pedido foi pago.
+      - name: metodo_pagamento
+        description: Método de pagamento utilizado para o pedido, podendo variar em Pix, Boleto Bancário e Cartão de Crédito.
+      - name: parcelas_pagamento
+        description: Número de parcelas do pagamento do pedido, caso aplicável.
+      - name: cancelado_em
+        description: Data e hora em que o pedido foi cancelado, caso aplicável.
+      - name: fechado_em
+        description: Data e hora em que o pedido foi fechado, caso aplicável.
+      - name: motivo_cancelamento
+        description: Motivo do cancelamento do pedido, caso aplicável.
+      - name: subtotal
+        description: Valor do subtotal do pedido, sem incluir taxas e descontos.
+      - name: desconto
+        description: Valor do desconto aplicado ao pedido, caso aplicável.
+      - name: desconto_cupom
+        description: Valor do desconto aplicado ao pedido através de cupom, caso aplicável.
+      - name: frete_cobrado
+        description: Valor do frete cobrado no pedido, caso aplicável.
+      - name: total
+        description: Valor total do pedido, incluindo subtotal, descontos e frete.
+      - name: total_pago_cliente
+        description: Valor total pago pelo cliente no pedido, considerando descontos e frete.
+      - name: endereco_entrega
+        description: Endereço completo de entrega do pedido, incluindo rua e número.
+      - name: cidade_entrega
+        description: Cidade de entrega do pedido.
+      - name: estado_entrega
+        description: Estado de entrega do pedido.
+
+# ============================================================
+# STAGING PEDIDOS
+# ============================================================

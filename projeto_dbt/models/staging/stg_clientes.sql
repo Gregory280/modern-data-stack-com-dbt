@@ -1,3 +1,10 @@
+{{ config(labels={
+    'camada': 'staging',
+    'dominio': 'e-commerce',
+    'ferramenta': 'dbt'
+  })
+}}
+
 SELECT
   id AS cliente_id,
   TRIM(name) AS nome,

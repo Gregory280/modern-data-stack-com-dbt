@@ -29,7 +29,3 @@ models:
       +materialized: view
       +persist_docs:
         relation: true
-      +labels:
-        camada: staging
-        dominio: e-commerce
-        ferramenta: dbt
