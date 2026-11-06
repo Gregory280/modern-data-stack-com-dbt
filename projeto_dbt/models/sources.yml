@@ -1,0 +1,9 @@
+version 1:
+
+sources:
+  - name: raw
+    database: projetominha-loja-513715
+    schema: raw
+
+    tables:
+      - name: clientes
