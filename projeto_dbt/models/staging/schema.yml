@@ -1,0 +1,56 @@
+version: 1
+
+models:
+  
+  # ============================================================
+  # STAGING CLIENTES
+  # ============================================================
+  - name: stg_clientes
+    description: >
+      Tabela de clientes cadastrados no sistema com nome e formatos padronizados. 
+      Granularidade: 1 linha = 1 cliente.
+    columns:
+      - name: cliente_id
+        description: Identificador único do cliente.
+        tests:
+          - not_null
+          - unique
+      - name: nome
+        description: Nome completo do cliente.
+        tests:
+          - not_null
+      - name: email
+        description: Endereço de e-mail do cliente padronizado.
+        tests:
+          - not_null
+          - unique
+      - name: celular
+        description: Número de celular do cliente.
+      - name: conta_ativada
+        description: Indica se a conta do cliente foi ativada com a confirmação de e-mail.
+      - name: criado_em
+        description: Data e hora em que o registro do cliente foi criado no sistema.
+      - name: atualizado_em
+        description: Data e hora da última atualização do registro do cliente no sistema.
+      - name: endereco
+        description: Endereço completo do cliente, incluindo rua e número.
+        tests:
+          - not_null
+      - name: cidade
+        description: Cidade do cliente.
+        tests:
+          - not_null
+      - name: estado
+        description: Estado do cliente.
+        tests:
+          - not_null
+      - name: uf
+        description: Unidade federativa (UF) do cliente.
+        tests:
+          - not_null
+      - name: total_gasto
+        description: Valor total gasto pelo cliente registrado no sistema.
+
+  # ============================================================
+  # STAGING PEDIDOS
+  # ============================================================
