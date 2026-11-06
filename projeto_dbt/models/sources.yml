@@ -2,7 +2,7 @@ version 1:
 
 sources:
   - name: raw
-    database: projetominha-loja-513715
+    database: minha-loja-513715
     schema: raw
 
     tables:
