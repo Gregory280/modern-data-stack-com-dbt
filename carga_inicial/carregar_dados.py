@@ -33,6 +33,7 @@ def carregar_dados(table_name, file_path):
   table_id = f"{projeto_id}.{dataset_id}.{table_name}"
   job_config = bigquery.LoadJobConfig(
     source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
+    write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
     autodetect=True
   )
   with open(file_path, "rb") as file:
