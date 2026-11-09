@@ -28,3 +28,10 @@ models:
       +materialized: view
       +persist_docs:
         relation: true
+
+    marts:
+      core:
+        +schema: marts
+        +materialized: table
+        +persist_docs:
+          relation: true

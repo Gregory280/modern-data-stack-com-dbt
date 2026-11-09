@@ -180,3 +180,53 @@ models:
         description: Preço por unidade registrado no momento da compra.
         data_tests:
           - not_null
+
+# ============================================================
+# STAGING PRODUTOS
+# ============================================================
+  - name: stg_produtos
+    description: >
+      Catálogo de produtos com uma linha por variante.
+      Cada variante combina um produto e uma numeração.
+      Os atributos do produto se repetem entre suas variantes.
+    columns:
+      - name: produto_id
+        description: Identificador do produto no catálogo.
+        data_tests:
+          - not_null
+
+      - name: variante_id
+        description: Identificador único da variante no catálogo.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: categoria
+        description: Categoria do produto, como tênis ou sandália.
+
+      - name: modelo
+        description: Modelo do calçado dentro da categoria.
+
+      - name: cor
+        description: Cor do produto no catálogo.
+
+      - name: nome_produto
+        description: Nome do produto, incluindo modelo e cor.
+
+      - name: tamanho
+        description: Numeração do calçado para a variante.
+        data_tests:
+          - not_null
+
+      - name: sku
+        description: Código comercial único da variante.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: preco
+        description: >
+          Preço unitário informado no catálogo, convertido para NUMERIC.
+          O preço praticado na compra fica registrado nos itens do pedido.
+        data_tests:
+          - not_null

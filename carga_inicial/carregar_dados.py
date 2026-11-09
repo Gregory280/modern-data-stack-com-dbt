@@ -10,6 +10,7 @@ dados_carga = "dados"
 arquivos = {
     "clientes": os.path.join(dados_carga, "clientes.jsonl"),
     "pedidos": os.path.join(dados_carga, "pedidos.jsonl"),
+    "produtos": os.path.join(dados_carga, "produtos.jsonl"),
     "itens_pedido": os.path.join(dados_carga, "itens_pedido.jsonl"),
 }
 client = bigquery.Client(project=projeto_id)
