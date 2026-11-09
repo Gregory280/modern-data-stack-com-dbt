@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  # ============================================================
+  # DIMENSÃO PRODUTO
+  # ============================================================
+  - name: dim_produto
+    description: >
+      Dimensão do catálogo com uma linha por variante de produto.
+      Permite analisar vendas por categoria, modelo, cor e numeração.
+    columns:
+      - name: variante_id
+        description: Identificador único da variante e chave usada na fato de vendas.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: produto_id
+        description: Identificador do produto, compartilhado pelas suas variantes.
+        data_tests:
+          - not_null
+
+      - name: categoria
+        description: Categoria do calçado, como tênis ou sandália.
+
+      - name: modelo
+        description: Modelo do calçado dentro da categoria.
+
+      - name: cor
+        description: Cor do produto no catálogo.
+
+      - name: nome
+        description: Nome do produto no catálogo, incluindo modelo e cor.
+
+      - name: tamanho
+        description: Numeração do calçado para a variante.
+        data_tests:
+          - not_null
+
+      - name: sku
+        description: Código comercial da variante, único no catálogo atual.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: preco
+        description: Preço unitário de catálogo. O preço praticado na compra fica no item do pedido.
+        data_tests:
+          - not_null
+
+      - name: nome_modelo
+        description: Rótulo que combina categoria e modelo, como Tênis Modelo 1.
+
+      - name: nome_variante
+        description: Rótulo que combina o nome do produto e a numeração do calçado.

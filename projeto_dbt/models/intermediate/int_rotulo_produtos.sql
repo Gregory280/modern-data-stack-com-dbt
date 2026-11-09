@@ -6,16 +6,16 @@
 }}
 
 SELECT
-  produto.variante_id,
-  produto.produto_id,
-  produto.categoria,
-  produto.modelo,
-  produto.cor,
-  produto.nome,
-  produto.tamanho,
-  produto.sku,
-  produto.preco,
-  CONCAT(produto.categoria, ' ', produto.modelo) AS nome_modelo,
-  CONCAT(produto.nome, ' . ', CAST(produto.tamanho AS STRING))  AS nome_variante
+  variante_id,
+  produto_id,
+  categoria,
+  modelo,
+  cor,
+  nome,
+  tamanho,
+  sku,
+  preco,
+  CONCAT(categoria, ' ', modelo) AS nome_modelo,
+  CONCAT(nome, ' . ', CAST(tamanho AS STRING))  AS nome_variante
 FROM
-  {{ ref('stg_produtos') }} AS produto
+  {{ ref('stg_produtos') }}
