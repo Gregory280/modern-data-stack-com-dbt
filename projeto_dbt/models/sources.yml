@@ -8,3 +8,4 @@ sources:
     tables:
       - name: clientes
       - name: pedidos
+      - name: itens_pedidos
