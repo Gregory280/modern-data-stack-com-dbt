@@ -1,3 +1,9 @@
+{{ config(labels={
+    'camada': 'marts-core',
+    'ferramenta': 'dbt'
+  })
+}}
+
 WITH CALENDARIO AS (
   SELECT DATA
   FROM UNNEST(
