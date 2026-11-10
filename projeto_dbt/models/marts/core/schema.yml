@@ -53,3 +53,54 @@ models:
 
       - name: nome_variante
         description: Rótulo que combina o nome do produto e a numeração do calçado.
+
+  # ============================================================
+  # DIMENSÃO CLIENTE
+  # ============================================================
+  - name: dim_cliente
+    description: >
+      Cadastro de clientes com uma linha por cliente, incluindo dados
+      de contato, endereço padrão e informações de compra fornecidas
+      pela origem.
+    columns:
+      - name: cliente_id
+        description: Identificador único do cliente e chave usada para relacionar suas compras.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: nome
+        description: Nome completo do cliente.
+
+      - name: email
+        description: E-mail do cliente, padronizado na staging.
+
+      - name: celular
+        description: Número de celular do cliente. Pode ser nulo quando não informado.
+
+      - name: conta_ativada
+        description: Indica se a conta do cliente foi ativada.
+
+      - name: criado_em
+        description: Data e hora de criação do cadastro na origem.
+
+      - name: atualizado_em
+        description: Data e hora da última atualização do cadastro na origem.
+
+      - name: endereco
+        description: Logradouro do endereço padrão do cliente.
+
+      - name: cidade
+        description: Cidade do endereço padrão do cliente.
+
+      - name: estado
+        description: Nome completo do estado do endereço padrão do cliente.
+
+      - name: uf
+        description: Sigla da unidade federativa do endereço padrão do cliente.
+
+      - name: total_gasto
+        description: Total gasto pelo cliente conforme informado pela origem.
+
+      - name: ultimo_pedido
+        description: Identificador do último pedido informado pela origem. Pode ser nulo para clientes sem pedidos.
