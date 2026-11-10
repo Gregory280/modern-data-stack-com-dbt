@@ -1,9 +1,9 @@
 version: 2
 
 models:
-  # ============================================================
-  # DIMENSÃO PRODUTO
-  # ============================================================
+# ============================================================
+# DIMENSÃO PRODUTO
+# ============================================================
   - name: dim_produto
     description: >
       Dimensão do catálogo com uma linha por variante de produto.
@@ -54,9 +54,9 @@ models:
       - name: nome_variante
         description: Rótulo que combina o nome do produto e a numeração do calçado.
 
-  # ============================================================
-  # DIMENSÃO CLIENTE
-  # ============================================================
+# ============================================================
+# DIMENSÃO CLIENTE
+# ============================================================
   - name: dim_cliente
     description: >
       Cadastro de clientes com uma linha por cliente, incluindo dados
@@ -104,3 +104,39 @@ models:
 
       - name: ultimo_pedido
         description: Identificador do último pedido informado pela origem. Pode ser nulo para clientes sem pedidos.
+
+# ============================================================
+# DIMENSÃO DATA
+# ============================================================
+  - name: dim_data
+    description: >
+      Calendário com uma linha por dia, de 1º de janeiro de 2025 a
+      31 de dezembro de 2029, incluindo dias sem vendas. Permite agrupar
+      e filtrar os eventos da loja por dia, mês, trimestre e ano.
+    columns:
+      - name: data
+        description: Data do calendário e chave única da dimensão.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: ano
+        description: Ano da data.
+
+      - name: ano_mes
+        description: Ano e mês no formato AAAA-MM, como 2025-01.
+
+      - name: trimestre
+        description: Número do trimestre no ano, de 1 a 4.
+
+      - name: mes
+        description: Número do mês no ano, de 1 a 12.
+
+      - name: nome_mes
+        description: Nome completo do mês em inglês, como January.
+
+      - name: dia
+        description: Dia do mês, de 1 a 31 conforme o mês.
+
+      - name: dia_semana
+        description: Número do dia da semana no BigQuery, de 1 para domingo a 7 para sábado.
