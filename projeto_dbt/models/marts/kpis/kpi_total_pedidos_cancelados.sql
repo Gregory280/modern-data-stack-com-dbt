@@ -3,4 +3,4 @@ SELECT
 FROM 
   {{ ref('fato_venda') }}
 WHERE 
-  pedido_status = 'cancelled'
+  pedido_status = 'Cancelado'
