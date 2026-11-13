@@ -35,3 +35,11 @@ models:
         +materialized: table
         +persist_docs:
           relation: true
+
+      kpis:
+        +schema: marts
+        +materialized: view
+        +labels:
+          camada: marts-kpis
+          dominio: e-commerce
+          ferramenta: dbt

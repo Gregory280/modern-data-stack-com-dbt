@@ -1,0 +1,78 @@
+version: 1
+
+models:
+# ============================================================
+# RECEITA TOTAL
+# ============================================================
+  - name: kpi_receita_total
+    description: >
+      Calcular o faturamento total da loja virtual considerando as vendas válidas
+      registradas no DW.
+
+      - Considerar apenas pedidos realizados com sucesso.
+      - Somar os valores de itens vendidos.
+      - Considerar o histórico inteiro disponível.
+    
+    columns:
+      - name: receita_total
+        description: Valor total das vendas válidas em BRL.
+  
+# ============================================================
+# TOTAL DE PEDIDOS
+# ============================================================
+  - name: kpi_total_pedidos
+    description: >
+      Calcular a quantidade de pedidos realizados no e-commerce, considerando
+      pedidos cancelados.
+
+      - Contabilizar cada pedido apenas uma vez.
+      - Considerar todos os status de pedidos e pagamentos.
+      - Considerar o histórico inteiro disponível.
+    
+    columns:
+      - name: total_pedidos
+        description: Quantidade total de pedidos realizados dentro do e-commerce
+
+# ============================================================
+# TICKET MEDIO
+# ============================================================
+  - name: kpi_ticket_medio
+    description: >
+      Calcula o valor médio gasto por pedido válido na loja.
+
+      - Considerar somente pagamento_status = 'paid'.
+      - Considerar pedido_status IN ('open', 'closed').
+      - Somar os subtotais dos itens vendidos.
+      - Contabilizar cada pedido apenas uma vez.
+    
+    columns:
+      - name: ticket_medio
+        description: Valor médio dos pedidos válidos.
+
+# ============================================================
+# TOTAL DE PEDIDOS PAGOS
+# ============================================================
+    - name: kpi_total_pedidos_pagos
+    description: >
+      Calcula a quantidade total de pedidos com pagamento confirmado.
+
+      - Considerar somente pagamento_status = 'paid'.
+      - Considerar todo o histórico disponível.
+
+    columns:
+      - name: total_pedidos_pagos
+        description: Quantidade de pedidos distintos com pagamento confirmado e status válido.
+
+# ============================================================
+# TOTAL DE CLIENTES COMPRADORES
+# ============================================================
+  - name: kpi_total_clientes_compradores
+    description: >
+      Calcula a quantidade total de clientes distintos
+      que finalizaram o processo de compra, independente se depois
+      o pedido foi reembolsado ou cancelado.
+
+    columns:
+      - name: total_clientes_compradores
+        description: Quantidade de clientes únicos com pelo menos uma compra válida.
+
