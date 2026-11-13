@@ -13,8 +13,16 @@ SELECT
   created_at AS criado_em,
   updated_at AS atualizado_em,
   shipping_status AS status_envio,
-  status AS pedido_status,
-  payment_status AS pagamento_status,
+  CASE status
+    WHEN 'open' THEN 'Aberto'
+    WHEN 'closed' THEN 'Fechado'
+    WHEN 'cancelled' THEN 'Cancelado'
+  END AS pedido_status,
+  CASE payment_status
+    WHEN 'paid' THEN 'Pago'
+    WHEN 'pending' THEN 'Pendente'
+    WHEN 'refunded' THEN 'Reembolsado'
+  END AS pagamento_status,
   paid_at AS pago_em,
   CASE LOWER(TRIM(payment_details.method))
     WHEN 'credit_card' THEN 'Cartão de Crédito'

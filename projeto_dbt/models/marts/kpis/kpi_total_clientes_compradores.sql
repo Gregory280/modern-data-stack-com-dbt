@@ -3,4 +3,4 @@ SELECT
 FROM
   {{ ref('dim_cliente') }}
 WHERE 
-  ultimo_pedido IS NOT NULL;
+  ultimo_pedido IS NOT NULL

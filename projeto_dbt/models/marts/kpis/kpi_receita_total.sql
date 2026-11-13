@@ -3,4 +3,4 @@ SELECT
 FROM
   {{ ref('fato_venda') }}
 WHERE
-  pedido_status IN ('closed', 'open') AND pagamento_status = 'paid'
+  pedido_status IN ('Fechado', 'Aberto') AND pagamento_status = 'Pago'

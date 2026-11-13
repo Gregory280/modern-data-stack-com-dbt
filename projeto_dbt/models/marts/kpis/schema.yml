@@ -52,7 +52,7 @@ models:
 # ============================================================
 # TOTAL DE PEDIDOS PAGOS
 # ============================================================
-    - name: kpi_total_pedidos_pagos
+  - name: kpi_total_pedidos_pagos
     description: >
       Calcula a quantidade total de pedidos com pagamento confirmado.
 
