@@ -1,0 +1,31 @@
+  # ============================================================
+  # REPORT VENDAS DIÁRIAS — ÚLTIMOS 7 DIAS
+  # ============================================================
+  - name: rpt_vendas_diarias_7_dias
+    description: >
+      Relatório com uma linha por dia nos últimos sete dias completos
+      no fuso America/Sao_Paulo. Agrupa os pedidos pela data de criação
+      e considera apenas os que estão pagos e com status Aberto ou
+      Fechado. Usa a dimensão de datas para incluir os dias sem vendas,
+      com quantidade de pedidos e valor total iguais a zero.
+
+    columns:
+      - name: data_pedido
+        description: Data de criação do pedido no fuso de São Paulo.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: nome_dia_semana
+        description: Nome em português do dia da semana correspondente à data.
+
+      - name: quantidade_pedidos
+        description: >
+          Contagem de pedidos distintos que atendem aos filtros do
+          relatório. Cada pedido conta uma vez, mesmo com vários itens.
+
+      - name: valor_total
+        description: >
+          Valor bruto dos itens dos pedidos que atendem aos filtros
+          do relatório. Corresponde à soma dos subtotais dos itens,
+          antes de descontos e frete, arredondada a duas casas decimais.

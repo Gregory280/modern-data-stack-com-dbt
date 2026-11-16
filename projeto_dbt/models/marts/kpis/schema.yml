@@ -1,4 +1,4 @@
-version: 1
+version: 2
 
 models:
 # ============================================================
@@ -40,8 +40,8 @@ models:
     description: >
       Calcula o valor médio gasto por pedido válido na loja.
 
-      - Considerar somente pagamento_status = 'paid'.
-      - Considerar pedido_status IN ('open', 'closed').
+      - Considerar somente pagamento_status = 'Pago'.
+      - Considerar pedido_status IN ('Aberto', 'Fechado').
       - Somar os subtotais dos itens vendidos.
       - Contabilizar cada pedido apenas uma vez.
     
@@ -56,7 +56,7 @@ models:
     description: >
       Calcula a quantidade total de pedidos com pagamento confirmado.
 
-      - Considerar somente pagamento_status = 'paid'.
+      - Considerar somente pagamento_status = 'Pago'.
       - Considerar todo o histórico disponível.
 
     columns:
@@ -76,3 +76,94 @@ models:
       - name: total_clientes_compradores
         description: Quantidade de clientes únicos com pelo menos uma compra válida.
 
+# ============================================================
+# RECEITA MÉDIA POR CLIENTE
+# ============================================================
+  - name: kpi_receita_media_cliente
+    description: >
+      Calcula a receita média gerada por cliente comprador na loja.
+
+      - Considerar somente pagamento_status = 'Pago'.
+      - Considerar pedido_status IN ('Aberto', 'Fechado').
+      - Dividir a receita total pela quantidade de clientes compradores.
+
+    columns:
+      - name: receita_media_cliente
+        description: Receita média por cliente comprador, expressa em BRL.
+
+# ============================================================
+# TAXA DE CLIENTES COMPRADORES
+# ============================================================
+  - name: kpi_taxa_clientes_compradores
+    description: >
+      Calcula o percentual de clientes cadastrados que realizaram
+      pelo menos uma compra válida na loja.
+
+      - Considerar todos os clientes cadastrados.
+      - Considerar compradores com pagamento_status = 'Pago'.
+      - Considerar pedido_status IN ('Aberto', 'Fechado').
+      - Dividir o total de clientes compradores pelo total de clientes cadastrados.
+
+    columns:
+      - name: taxa_clientes_compradores
+        description: Percentual de clientes cadastrados que realizaram pelo menos uma compra válida, em escala de 0 a 100.
+
+# ============================================================
+# TOTAL DE CLIENTES
+# ============================================================
+  - name: kpi_total_clientes
+    description: >
+      Calcula a quantidade total de clientes cadastrados na loja.
+
+      - Considerar todos os clientes cadastrados.
+      - Incluir clientes que nunca realizaram compras.
+
+    columns:
+      - name: total_clientes
+        description: Quantidade total de clientes distintos cadastrados na loja.
+
+# ============================================================
+# TOTAL DE PEDIDOS CANCELADOS
+# ============================================================
+  - name: kpi_total_pedidos_cancelados
+    description: >
+      Calcula a quantidade total de pedidos cancelados na loja.
+
+      Regras de negócio:
+      - Considerar somente pedido_status = 'Cancelado'.
+      - Contabilizar cada pedido cancelado apenas uma vez.
+
+    columns:
+      - name: total_pedidos_cancelados
+        description: Quantidade total de pedidos distintos com status cancelado, independentemente do pagamento.
+
+# ============================================================
+# RECEITA ACUMULADA DO MÊS ATUAL X MÊS PASSADO
+# ============================================================
+  - name: kpi_receita_mtd_comparativo
+    description: >
+      Calcula a receita acumulada do mês atual (Month to Date)
+      e compara com o mesmo período do mês anterior.
+
+      - Considerar somente pedido_status IN ('Aberto', 'Fechado').
+      - Considerar somente pagamento_status = 'Pago'.
+      - Calcular a receita do primeiro dia do mês atual até a data corrente.
+      - Comparar com o período equivalente do mês anterior.
+      - Calcular a variação relativa entre os dois períodos.
+
+    columns:
+      - name: receita_mtd_atual
+        description: >
+          Receita acumulada desde o primeiro dia do mês atual
+          até a data corrente.
+
+      - name: receita_mtd_anterior
+        description: >
+          Receita acumulada no mês anterior, desde seu primeiro
+          dia até a data equivalente à data corrente.
+
+      - name: variacao_percentual
+        description: >
+          Variação relativa entre a receita MTD atual e a receita
+          MTD do mês anterior, calculada pela diferença entre
+          os valores dividida pela receita do período anterior.

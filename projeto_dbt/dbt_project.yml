@@ -43,3 +43,11 @@ models:
           camada: marts-kpis
           dominio: e-commerce
           ferramenta: dbt
+      
+      reports:
+        +schema: marts
+        +materialized: view
+        +labels:
+          camada: marts-reports
+          dominio: e-commerce
+          ferramenta: dbt
