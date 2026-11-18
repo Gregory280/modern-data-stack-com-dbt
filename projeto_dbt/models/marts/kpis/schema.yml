@@ -167,3 +167,26 @@ models:
           Variação relativa entre a receita MTD atual e a receita
           MTD do mês anterior, calculada pela diferença entre
           os valores dividida pela receita do período anterior.
+
+# ============================================================
+# KPI RECEITA YTD — COMPARATIVO ANUAL
+# ============================================================
+  - name: kpi_receita_ytd_comparativo
+    description: >
+      Compara a receita bruta acumulada desde 1º de janeiro até hoje
+      com o mesmo período do ano anterior, usando a data de criação
+      do pedido no fuso America/Sao_Paulo. Considera pedidos com status
+      Aberto ou Fechado e pagamento Pago. Retorna uma linha.
+
+    columns:
+      - name: receita_ytd_atual
+        description: Soma dos subtotais dos itens desde 1º de janeiro do ano atual até hoje.
+
+      - name: receita_ytd_anterior
+        description: >
+          Soma dos subtotais dos itens desde 1º de janeiro do ano anterior
+          até a data equivalente à de hoje naquele ano, antes de descontos
+          e frete, arredondada a duas casas decimais.
+
+      - name: variacao_percentual
+        description: Variação relativa entre a receita YTD atual e a anterior, calculada como (atual - anterior) / anterior.

@@ -5,8 +5,10 @@ WITH
     FROM
       {{ ref('fato_venda') }}
     WHERE
-      DATE(criado_em) >= DATE_TRUNC(CURRENT_DATE(), MONTH) AND DATE(criado_em) <= CURRENT_DATE() AND    
-      pedido_status in ('Aberto', 'Fechado') AND pagamento_status = 'Pago'
+      DATE(criado_em) >= DATE_TRUNC(CURRENT_DATE('America/Sao_Paulo'), MONTH) 
+      AND DATE(criado_em) <= CURRENT_DATE('America/Sao_Paulo') 
+      AND pedido_status in ('Aberto', 'Fechado') 
+      AND pagamento_status = 'Pago'
 
   ),
 
@@ -16,9 +18,10 @@ WITH
     FROM
       {{ ref('fato_venda') }}
     WHERE
-      DATE(criado_em) >= DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), MONTH) AND
-      DATE(criado_em) <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH) AND
-      pedido_status in ('Aberto', 'Fechado') AND pagamento_status = 'Pago'
+      DATE(criado_em) >= DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), MONTH) 
+      AND DATE(criado_em) <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH) 
+      AND pedido_status in ('Aberto', 'Fechado') 
+      AND pagamento_status = 'Pago'
   )
 
 SELECT
