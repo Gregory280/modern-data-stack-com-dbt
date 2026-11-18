@@ -51,3 +51,11 @@ models:
           camada: marts-reports
           dominio: e-commerce
           ferramenta: dbt
+    
+      views:
+        +schema: marts
+        +materialized: view
+        +labels:
+          camada: marts-views
+          dominio: e-commerce
+          ferramenta: dbt
