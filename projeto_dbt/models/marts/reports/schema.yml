@@ -1,6 +1,9 @@
-  # ============================================================
-  # REPORT VENDAS DIÁRIAS — ÚLTIMOS 7 DIAS
-  # ============================================================
+version: 1
+
+models:
+# ============================================================
+# REPORT VENDAS DIÁRIAS — ÚLTIMOS 7 DIAS
+# ============================================================
   - name: rpt_vendas_diarias_7_dias
     description: >
       Relatório com uma linha por dia nos últimos sete dias completos
@@ -29,3 +32,108 @@
           Valor bruto dos itens dos pedidos que atendem aos filtros
           do relatório. Corresponde à soma dos subtotais dos itens,
           antes de descontos e frete, arredondada a duas casas decimais.
+
+# ============================================================
+# REPORT VENDAS DIÁRIAS POR MODELO — ÚLTIMOS 7 DIAS
+# ============================================================
+  - name: rpt_vendas_por_modelo_7_dias
+    description: >
+      Relatório de vendas por modelo de calçado nos últimos sete dias completos
+      com base na data de criação do pedido.
+      Cada linha representa um modelo com vendas no período, somando suas cores e numerações.
+
+    columns:
+      - name: nome_modelo
+        description: Nome do modelo com sua categoria, como Tênis Modelo 3 ou sandália Modelo 1.
+
+      - name: qtd_vendida
+        description: Total de pares vendidos do modelo no período.
+
+      - name: valor_bruto
+        description: Soma dos subtotais dos itens vendidos do modelo no período, antes de descontos e frete.
+
+# ============================================================
+# REPORT RECEITA POR CATEGORIA
+# ============================================================
+  - name: rpt_receita_por_categoria
+    description: >
+      Receita bruta por categoria de produto, com uma linha por categoria
+      com vendas elegíveis. Considera todo o histórico disponível,
+      incluindo pedidos com status Aberto ou Fechado e pagamento Pago.
+      Relaciona os itens às categorias pela variante do produto.
+
+    columns:
+      - name: categoria
+        description: Categoria do calçado, como Tênis ou Sandália.
+
+      - name: valor_bruto
+        description: >
+          Soma dos subtotais dos itens da categoria, antes de descontos
+          e frete, arredondada a duas casas decimais.
+
+# ============================================================
+# REPORT VENDAS POR CATEGORIA — ÚLTIMOS 7 DIAS
+# ============================================================
+  - name: rpt_vendas_por_categoria_7_dias
+    description: >
+      Vendas por categoria nos últimos sete dias completos, considerando
+      a data de criação do pedido no fuso America/Sao_Paulo.
+      Inclui pedidos com status Aberto ou Fechado e pagamento Pago.
+
+    columns:
+      - name: categoria
+        description: Categoria do calçado, como Tênis ou Sandália.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: valor_bruto
+        description: Soma dos subtotais dos itens da categoria no período, antes de descontos e frete, arredondada a duas casas decimais.
+        data_tests:
+          - not_null
+
+# ============================================================
+# REPORT VENDAS POR MODELO
+# ============================================================
+  - name: rpt_vendas_por_modelo
+    description: >
+      Vendas por modelo de calçado em todo o histórico disponível.
+      Considera pedidos com status Aberto ou Fechado e pagamento Pago.
+      Cada linha representa um modelo com vendas elegíveis, somando
+      todas as suas cores e numerações.
+
+    columns:
+      - name: nome_modelo
+        description: Nome do modelo com sua categoria, como Tênis Modelo 1 ou Sandália Modelo 1.
+
+      - name: qtd_vendida
+        description: Total de pares vendidos do modelo em pedidos elegíveis.
+
+      - name: valor_bruto
+        description: >
+          Soma dos subtotais dos itens do modelo em pedidos elegíveis,
+          antes de descontos e frete.
+
+# ============================================================
+# REPORT VENDAS DIÁRIAS — MÊS ATUAL
+# ============================================================
+  - name: rpt_vendas_diarias_mes_atual
+    description: >
+      Vendas agrupadas pela data de criação do pedido, do primeiro dia
+      do mês atual até hoje, no fuso America/Sao_Paulo.
+      Considera pedidos com status Aberto ou Fechado e pagamento Pago.
+
+    columns:
+      - name: data_pedido
+        description: Data de criação do pedido no fuso de São Paulo.
+
+      - name: qtd_pedidos
+        description: >
+          Quantidade de pedidos distintos com vendas elegíveis no dia,
+          contando cada pedido uma vez, independentemente dos itens.
+
+      - name: qtd_vendida
+        description: Total de pares vendidos em pedidos elegíveis no dia.
+
+      - name: valor_bruto
+        description: Soma dos subtotais dos itens de pedidos elegíveis no dia, antes de descontos e frete.
