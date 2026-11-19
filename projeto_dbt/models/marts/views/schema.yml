@@ -1,0 +1,28 @@
+version: 1
+
+models:
+
+# ============================================================
+# VIEW COM REGISTROS DE VENDAS DOS ÚLTIMOS 90 DIAS
+# ============================================================
+  - name: vw_vendas_ultimos_90_dias
+    description: >
+      View de vendas dos últimos 90 dias, incluindo hoje. Enriquece
+      os itens com atributos do catálogo de produtos, como categoria,
+      modelo, cor e tamanho, e informações do cadastro atual do cliente,
+      como nome, estado e UF. Cada linha representa um item com
+      correspondência nas dimensões de produto e cliente.
+      Inclui todos os status de pedido e pagamento.
+
+# ============================================================
+# VIEW COM REGISTROS DE VENDAS DO ANO ATUAL
+# ============================================================
+  - name: vw_vendas_ano_atual
+    description: >
+      View de vendas desde 1º de janeiro do ano atual até hoje, com base
+      na data de criação do pedido no fuso America/Sao_Paulo. Enriquece
+      os itens com atributos do catálogo de produtos, como categoria,
+      modelo, cor e tamanho, e informações do cadastro atual do cliente,
+      como nome, estado e UF. Cada linha representa um item com
+      correspondência nas dimensões de produto e cliente.
+      Inclui todos os status de pedido e pagamento.

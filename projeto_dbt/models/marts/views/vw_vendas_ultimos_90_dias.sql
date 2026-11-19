@@ -27,6 +27,6 @@ JOIN
 JOIN
   {{ ref('dim_cliente') }} AS dc
     ON fv.cliente_id = dc.cliente_id
-WHERE DATE(criado_em, 'America/Sao_Paulo') BETWEEN
+WHERE DATE(fv.criado_em, 'America/Sao_Paulo') BETWEEN
     DATE_SUB(CURRENT_DATE('America/Sao_Paulo'), INTERVAL 89 DAY)
     AND CURRENT_DATE('America/Sao_Paulo')

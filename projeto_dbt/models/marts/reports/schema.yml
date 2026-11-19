@@ -137,3 +137,29 @@ models:
 
       - name: valor_bruto
         description: Soma dos subtotais dos itens de pedidos elegíveis no dia, antes de descontos e frete.
+
+# ============================================================
+# REPORT VENDAS POR UF
+# ============================================================
+  - name: rpt_vendas_por_uf
+    description: >
+      Vendas agrupadas pela UF do endereço atual do cadastro do cliente,
+      considerando todo o histórico disponível. Inclui pedidos com status
+      Aberto ou Fechado e pagamento Pago, cujos clientes possuem
+      correspondência em dim_cliente. Cada linha representa uma UF.
+
+    columns:
+      - name: uf
+        description: Sigla da unidade federativa do endereço atual do cliente.
+
+      - name: qtd_pedidos
+        description: Quantidade de pedidos distintos com vendas elegíveis na UF.
+
+      - name: qtd_clientes
+        description: Quantidade de clientes distintos com compras elegíveis na UF.
+
+      - name: qtd_vendida
+        description: Total de pares vendidos em pedidos elegíveis na UF.
+
+      - name: valor_total
+        description: Soma dos subtotais dos itens de pedidos elegíveis na UF, antes de descontos e frete.
