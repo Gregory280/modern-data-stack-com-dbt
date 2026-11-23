@@ -19,7 +19,7 @@ SELECT
   dias_desde_cadastro,
     CASE
     WHEN dias_desde_cadastro <= 10 THEN 'Até 10 dias'
-    WHEN dias_desde_cadastro <= 30 THEN '8 a 30 dias'
+    WHEN dias_desde_cadastro <= 30 THEN '11 a 30 dias'
     WHEN dias_desde_cadastro <= 60 THEN '31 a 60 dias'
     WHEN dias_desde_cadastro <= 120 THEN '61 a 120 dias'
     ELSE 'Mais de 120 dias'

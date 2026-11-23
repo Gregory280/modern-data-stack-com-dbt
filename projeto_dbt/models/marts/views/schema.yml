@@ -26,3 +26,24 @@ models:
       como nome, estado e UF. Cada linha representa um item com
       correspondência nas dimensões de produto e cliente.
       Inclui todos os status de pedido e pagamento.
+
+# ============================================================
+# VIEW CLIENTES SEM COMPRAS
+# ============================================================
+  - name: vw_clientes_sem_compras
+    description: >
+      Clientes sem pedido registrado no campo ultimo_pedido do cadastro.
+      Granularidade: uma linha por cliente. Inclui informações cadastrais,
+      dados de contato e uma classificação pelo tempo desde o cadastro,
+      apoiando análises de clientes que ainda não realizaram pedidos.
+
+    columns:
+      - name: dias_desde_cadastro
+        description: >
+          Quantidade de dias entre a data de cadastro do cliente e a data
+          atual.
+
+      - name: faixa_de_tempo
+        description: >
+          Classificação do tempo desde o cadastro nas faixas: Até 10 dias,
+          11 a 30 dias, 31 a 60 dias, 61 a 120 dias e Mais de 120 dias.
