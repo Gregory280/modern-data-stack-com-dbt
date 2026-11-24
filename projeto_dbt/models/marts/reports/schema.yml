@@ -53,9 +53,9 @@ models:
         description: Soma dos subtotais dos itens vendidos do modelo no período, antes de descontos e frete.
 
 # ============================================================
-# REPORT RECEITA POR CATEGORIA
+# REPORT VENDAS POR CATEGORIA
 # ============================================================
-  - name: rpt_receita_por_categoria
+  - name: rpt_vendas_por_categoria
     description: >
       Receita bruta por categoria de produto, com uma linha por categoria
       com vendas elegíveis. Considera todo o histórico disponível,
